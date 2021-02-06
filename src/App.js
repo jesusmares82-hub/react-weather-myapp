@@ -1,7 +1,10 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
-import { ButtonGroup, Button } from "react-bootstrap";
+import { ButtonGroup, Container, Row } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import Button from "react-bootstrap/Button";
 
 function App() {
   // State
@@ -99,33 +102,63 @@ function App() {
       var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
       return (
         <div>
-          <strong>{apiData.name}, </strong>
-          <strong>{apiData.sys.country}</strong>
-          <p>
-            <strong>México</strong>
-          </p>
-          <div>
-            <img id="wicon" src={iconurl} alt="Weather icon" />
-            <p>
-              <strong>{apiData.weather[0].description}</strong>
-            </p>
+          <h2>
+            <strong>{apiData.name}, </strong>
+
+            <strong>{apiData.sys.country}</strong>
+          </h2>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <h2>
+              <strong className="text-center">México</strong>
+            </h2>
           </div>
-          <p>
-            <strong>
-              {degrees
-                ? apiData.main.temp
-                : (apiData.main.temp * 1.8 + 32).toFixed(2)}
-              {degrees ? "℃" : "℉"}
-            </strong>
-          </p>
-          <ButtonGroup aria-label="Basic example">
-            <Button variant="secondary" onClick={handleChangeC}>
-              &#8451;
-            </Button>
-            <Button variant="secondary" onClick={handleChangeF}>
-              &#8457;
-            </Button>
-          </ButtonGroup>
+          <Container>
+            <Row style={{ display: "flex", justifyContent: "space-between" }}>
+              <Col
+                className="d-flex justify-content-between"
+                lg="6"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <div style={{ display: "flex", justifyContent: "start" }}>
+                  <img id="wicon" src={iconurl} alt="Weather icon" />
+                  <p>
+                    <strong>{apiData.weather[0].description}</strong>
+                  </p>
+                </div>
+              </Col>
+              <Col lg="6" className="d-flex justify-content-end">
+                <p>
+                  <strong>
+                    {degrees
+                      ? apiData.main.temp
+                      : (apiData.main.temp * 1.8 + 32).toFixed(2)}
+                    {degrees ? "℃" : "℉"}
+                  </strong>
+                </p>
+                <p>
+                  <strong>
+                    Feels like:{" "}
+                    {degrees
+                      ? apiData.main.feels_like
+                      : (apiData.main.feels_like * 1.8 + 32).toFixed(2)}{" "}
+                    {degrees ? "℃" : "℉"}
+                  </strong>
+                </p>
+                <>
+                  <ButtonToolbar>
+                    <ButtonGroup>
+                      <Button className="btn-bg" onClick={handleChangeC}>
+                        &#8451;
+                      </Button>
+                      <Button className="btn-bg" onClick={handleChangeF}>
+                        &#8457;
+                      </Button>
+                    </ButtonGroup>
+                  </ButtonToolbar>
+                </>
+              </Col>
+            </Row>
+          </Container>
         </div>
       );
     } else {
@@ -148,14 +181,18 @@ function App() {
   useEffect(effectCallback, [apiUrl]);
 
   return (
-    <div className="App">
+    <Container
+      className="App App-header justify-content-center"
+      fluid={true}
+      style={{ display: "flex", justifyContent: "center" }}
+    >
       <h1>Weather App</h1>
       {loading ? (
         name()
       ) : (
-        <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+        <Loader type="Bars" color="#00BFFF" height={80} width={80} />
       )}
-    </div>
+    </Container>
   );
 }
 
