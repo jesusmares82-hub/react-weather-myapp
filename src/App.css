@@ -2,41 +2,101 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .btn-bg {
   background-color: #00bfff;
+}
+
+.btn-bg:focus {
+  background-color: #0048ff;
+  color: whitesmoke;
+}
+
+.clear {
+  background-image: url("./assets/Clear.jpg");
+  background-size: cover;
+  background-position: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 0.2s ease;
+  color: black;
+}
+
+.thunderstorm {
+  background-image: url("./assets/Thunderstorm.jpg");
+  background-size: cover;
+  background-position: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 0.2s ease;
+  color: black;
+}
+
+.drizzle {
+  background-image: url("./assets/Drizzle.jpg");
+  background-size: cover;
+  background-position: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 0.2s ease;
+  color: black;
+}
+
+.rain {
+  background-image: url("./assets/Rain.jpg");
+  background-size: cover;
+  background-position: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 0.2s ease;
+  color: black;
+}
+
+.snow {
+  background-image: url("./assets/Snow.jpg");
+  background-size: cover;
+  background-position: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 0.2s ease;
+  color: black;
+}
+
+.clouds {
+  background-image: url("./assets/Clouds.jpg");
+  background-size: cover;
+  background-position: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 0.2s ease;
+  color: black;
+}
+
+.default {
+  background-image: url("./assets/default.jpg");
+  background-size: cover;
+  background-position: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 0.2s ease;
+  color: black;
+}
+
+.overlay {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(225, 18, 18, 0.741)
+  );
 }
