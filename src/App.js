@@ -1,13 +1,15 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
-import { ButtonGroup, Container, Row } from "react-bootstrap";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
 
 function App() {
-  // State
+  // Variable de estado para almacenar los datos de la API Openweathermap
   const [apiData, setApiData] = useState({
     base: "stations",
     clouds: { all: 1 },
@@ -46,15 +48,18 @@ function App() {
     lat: 0,
     lng: 0,
   });
+
   //Variable de estado del loader
   const [loading, setLoading] = useState(false);
-  //Variable de estdo de los grados
+
+  //Variable de estado de los grados de temperatura
   const [degrees, setDegrees] = useState(true);
 
-  // API KEY AND URL
+  // APIKEY y URL
   const apiKey = "881506eb5925c4f5a7859aeb4fc03a91";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${userCoord.lat}&lon=${userCoord.lng}&units=metric&appid=${apiKey}`;
 
+  // Codigos de 2 caracteres para las ciudades
   const alphaCodeCountries = [
     {
       code: "AF",
@@ -74,6 +79,7 @@ function App() {
     },
   ];
 
+  //Construir la fecha actual para mostrarla
   const dateBuilder = (d) => {
     let months = [
       "January",
@@ -107,14 +113,15 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  //Obtener con fetch los datos de la API de Openweathermap
   const getWeatherAPI = async () => {
     const result = fetch(apiUrl);
     const value = await result;
     return value.json();
   };
 
+  //Obtener las  coordenadas del usuario con API del navegador
   const getCoord = (userCoord, setUserCoord) => {
-    //Obtener las  coordenadas del usuario
     navigator.geolocation.getCurrentPosition(
       function (position) {
         setUserCoord({
@@ -128,26 +135,26 @@ function App() {
     );
   };
 
-  //Obtener las  coordenadas del usuario
-  //getCoord(userCoord, setUserCoord);
+  //Cambiar temperatura a grados Farenheit
   const handleChangeF = () => {
     const degreeF = Math.floor(apiData.main.temp * 1.8 + 32);
     setDegrees(false);
   };
 
+  //Cambiar temperatura a grados Celsius
   const handleChangeC = () => {
     const degreeF = Math.floor(apiData.main.temp * 1.8 + 32);
     setDegrees(true);
   };
 
-  const name = () => {
+  //Mostrar los datos de la API Openweathermap en pantalla
+  const showData = () => {
     if (
       apiData.name &&
       apiData.sys.country &&
       apiData.weather[0].icon &&
       apiData.main.temp
     ) {
-      console.log(apiData.weather[0].main);
       const country = alphaCodeCountries.find(
         (element) => element.code === "MX"
       );
@@ -185,7 +192,12 @@ function App() {
               </h2>
             </div>
             <Container>
-              <Row style={{ display: "flex", justifyContent: "space-between" }}>
+              <Row
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                }}
+              >
                 <Col className="d-flex justify-content-end" lg="6">
                   <img
                     id="wicon"
@@ -241,6 +253,7 @@ function App() {
     }
   };
 
+  //Función para pasar a useEffect
   const effectCallback = () => {
     //Obtener las  coordenadas del usuario
     getCoord(userCoord, setUserCoord);
@@ -250,7 +263,7 @@ function App() {
       setLoading(true);
     });
   };
-
+  // useEffect se usa para consumir la API y obtener las coordenadas del usuario
   useEffect(effectCallback, [apiUrl]);
 
   return (
@@ -260,7 +273,7 @@ function App() {
       style={{ display: "flex", justifyContent: "center" }}
     >
       {loading ? (
-        name()
+        showData()
       ) : (
         <Loader type="Bars" color="#00BFFF" height={80} width={80} />
       )}
