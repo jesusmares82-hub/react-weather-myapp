@@ -22,13 +22,13 @@
 }
 
 .clear {
-  background-image: url("./assets/Clear.jpg");
+  background-image: url("./assets/Clear4.jpg");
   background-size: cover;
   background-position: center;
   min-width: 100vw;
   min-height: 100vh;
   transition: 0.2s ease;
-  color: black;
+  color: rgb(22, 20, 20);
 }
 
 .thunderstorm {
@@ -38,17 +38,17 @@
   min-width: 100vw;
   min-height: 100vh;
   transition: 0.2s ease;
-  color: black;
+  color: rgb(252, 249, 249);
 }
 
 .drizzle {
-  background-image: url("./assets/Drizzle.jpg");
+  background-image: url("./assets/Drizzle2.jpg");
   background-size: cover;
   background-position: center;
   min-width: 100vw;
   min-height: 100vh;
   transition: 0.2s ease;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .rain {
@@ -58,11 +58,11 @@
   min-width: 100vw;
   min-height: 100vh;
   transition: 0.2s ease;
-  color: black;
+  color: rgb(252, 252, 252);
 }
 
 .snow {
-  background-image: url("./assets/Snow.jpg");
+  background-image: url("./assets/Snow2.jpg");
   background-size: cover;
   background-position: center;
   min-width: 100vw;
@@ -78,11 +78,11 @@
   min-width: 100vw;
   min-height: 100vh;
   transition: 0.2s ease;
-  color: black;
+  color: rgb(252, 252, 252);
 }
 
 .default {
-  background-image: url("./assets/default.jpg");
+  background-image: url("./assets/default2.jpg");
   background-size: cover;
   background-position: center;
   min-width: 100vw;

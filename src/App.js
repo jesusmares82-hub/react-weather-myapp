@@ -77,6 +77,178 @@ function App() {
       code: "MX",
       country: "México",
     },
+    {
+      code: "AQ",
+      country: "Antarctica",
+    },
+    {
+      code: "AR",
+      country: "Argentina",
+    },
+    {
+      code: "AM",
+      country: "Armenia",
+    },
+    {
+      code: "AU",
+      country: "Australia",
+    },
+    {
+      code: "AT",
+      country: "Austria",
+    },
+    {
+      code: "BD",
+      country: "Bangladesh",
+    },
+    {
+      code: "BE",
+      country: "Belgium",
+    },
+    {
+      code: "BZ",
+      country: "Belize",
+    },
+    {
+      code: "BM",
+      country: "Bermuda",
+    },
+    {
+      code: "BO",
+      country: "Bolivia",
+    },
+    {
+      code: "BR",
+      country: "Brazil",
+    },
+    {
+      code: "BG",
+      country: "Bulgaria",
+    },
+    {
+      code: "CA",
+      country: "Canada",
+    },
+    {
+      code: "CL",
+      country: "Chile",
+    },
+    {
+      code: "CN",
+      country: "China",
+    },
+    {
+      code: "CO",
+      country: "Colombia",
+    },
+    {
+      code: "CR",
+      country: "Costa Rica",
+    },
+    {
+      code: "HR",
+      country: "Croatia",
+    },
+    {
+      code: "CU",
+      country: "Cuba",
+    },
+    {
+      code: "DO",
+      country: "Dominican Republic",
+    },
+    {
+      code: "EC",
+      country: "Ecuador",
+    },
+    {
+      code: "SV",
+      country: "El Salvador",
+    },
+    {
+      code: "EG",
+      country: "Egypt",
+    },
+    {
+      code: "FR",
+      country: "France",
+    },
+    {
+      code: "DE",
+      country: "Germany",
+    },
+    {
+      code: "GR",
+      country: "Greece",
+    },
+    {
+      code: "GT",
+      country: "Guatemala",
+    },
+    {
+      code: "HT",
+      country: "Haiti",
+    },
+    {
+      code: "HN",
+      country: "Honduras",
+    },
+    {
+      code: "IN",
+      country: "India",
+    },
+    {
+      code: "ID",
+      country: "Indonesia",
+    },
+    {
+      code: "IE",
+      country: "Ireland",
+    },
+    {
+      code: "IT",
+      country: "Italy",
+    },
+    {
+      code: "JP",
+      country: "Japan",
+    },
+    {
+      code: "NI",
+      country: "Nicaragua",
+    },
+    {
+      code: "PA",
+      country: "Panama",
+    },
+    {
+      code: "PE",
+      country: "Peru",
+    },
+    {
+      code: "PR",
+      country: "Puerto Rico",
+    },
+    {
+      code: "PT",
+      country: "Portugal",
+    },
+    {
+      code: "ES",
+      country: "Spain",
+    },
+    {
+      code: "US",
+      country: "United States of America",
+    },
+    {
+      code: "UY",
+      country: "Uruguay",
+    },
+    {
+      code: "VE",
+      country: "Venezuela",
+    },
   ];
 
   //Construir la fecha actual para mostrarla
@@ -155,6 +327,8 @@ function App() {
       apiData.weather[0].icon &&
       apiData.main.temp
     ) {
+      let weatherDescription = apiData.weather[0].description;
+
       const country = alphaCodeCountries.find(
         (element) => element.code === "MX"
       );
@@ -180,7 +354,9 @@ function App() {
         >
           <h1>Weather App</h1>
           <div>
-            <div className="date">{dateBuilder(new Date())}</div>
+            <div className="date">
+              <strong>{dateBuilder(new Date())}</strong>
+            </div>
             <h2>
               <strong>{apiData.name}, </strong>
 
@@ -188,9 +364,12 @@ function App() {
             </h2>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <h2>
-                <strong className="text-center">{country.country}</strong>
+                <strong className="text-center">
+                  Country: {country.country}
+                </strong>
               </h2>
             </div>
+            <img id="wicon" src={iconurl} alt="Weather icon" width="120px" />
             <Container>
               <Row
                 style={{
@@ -198,21 +377,21 @@ function App() {
                   justifyContent: "space-around",
                 }}
               >
-                <Col className="d-flex justify-content-end" lg="6">
-                  <img
-                    id="wicon"
-                    src={iconurl}
-                    alt="Weather icon"
-                    width="80px"
-                  />
+                <Col className="d-flex justify-content-center" lg="4">
                   <p>
-                    <strong>{apiData.weather[0].description}</strong>
+                    <strong>
+                      {weatherDescription.charAt(0).toUpperCase() +
+                        weatherDescription.slice(1)}
+                    </strong>
                   </p>
                   <p>
                     <strong> Humidity: {apiData.main.humidity}%</strong>
                   </p>
+                  <p>
+                    <strong> Wind Speed: {apiData.wind.speed}meter/sec</strong>
+                  </p>
                 </Col>
-                <Col lg="6" className="d-flex justify-content-end">
+                <Col lg="8" className="d-flex justify-content-center">
                   <p>
                     <strong>
                       {degrees
