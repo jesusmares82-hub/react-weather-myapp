@@ -372,12 +372,13 @@ function App() {
             <img id="wicon" src={iconurl} alt="Weather icon" width="120px" />
             <Container>
               <Row
+                className="my-container"
                 style={{
                   display: "flex",
                   justifyContent: "space-around",
                 }}
               >
-                <Col className="d-flex justify-content-center" lg="4">
+                <Col className="d-flex justify-content-center" lg="6">
                   <p>
                     <strong>
                       {weatherDescription.charAt(0).toUpperCase() +
@@ -391,15 +392,25 @@ function App() {
                     <strong> Wind Speed: {apiData.wind.speed}meter/sec</strong>
                   </p>
                 </Col>
-                <Col lg="8" className="d-flex justify-content-center">
-                  <p>
+                <Col lg="6" className="d-flex justify-content-center">
+                  <span>
                     <strong>
                       {degrees
                         ? apiData.main.temp
                         : (apiData.main.temp * 1.8 + 32).toFixed(2)}
                       {degrees ? "℃" : "℉"}
                     </strong>
-                  </p>
+                  </span>
+                  <ButtonToolbar>
+                    <ButtonGroup>
+                      <Button className="btn-bg" onClick={handleChangeC}>
+                        &#8451;
+                      </Button>
+                      <Button className="btn-bg" onClick={handleChangeF}>
+                        &#8457;
+                      </Button>
+                    </ButtonGroup>
+                  </ButtonToolbar>
                   <p>
                     <strong>
                       Feels like:{" "}
@@ -409,18 +420,7 @@ function App() {
                       {degrees ? "℃" : "℉"}
                     </strong>
                   </p>
-                  <>
-                    <ButtonToolbar>
-                      <ButtonGroup>
-                        <Button className="btn-bg" onClick={handleChangeC}>
-                          &#8451;
-                        </Button>
-                        <Button className="btn-bg" onClick={handleChangeF}>
-                          &#8457;
-                        </Button>
-                      </ButtonGroup>
-                    </ButtonToolbar>
-                  </>
+                  <></>
                 </Col>
               </Row>
             </Container>
