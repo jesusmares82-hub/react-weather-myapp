@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
+require("react-bootstrap");
 
 function App() {
   // Variable de estado para almacenar los datos de la API Openweathermap
@@ -285,6 +286,11 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  //Variable para la box-shadow de Bootstrap
+  var well = {
+    boxShadow: "1px 3px 1px #51c2d5",
+  };
+
   //Obtener con fetch los datos de la API de Openweathermap
   const getWeatherAPI = async () => {
     const result = fetch(apiUrl);
@@ -378,7 +384,11 @@ function App() {
                   justifyContent: "center",
                 }}
               >
-                <Col className="d-flex justify-content-center Card" md="4">
+                <Col
+                  className="d-flex justify-content-center Card "
+                  md="4"
+                  style={well}
+                >
                   <p>
                     <strong>
                       {weatherDescription.charAt(0).toUpperCase() +
@@ -392,7 +402,11 @@ function App() {
                     <strong> Wind Speed: {apiData.wind.speed}meter/sec</strong>
                   </p>
                 </Col>
-                <Col md="4" className="d-flex justify-content-center Card">
+                <Col
+                  md="4"
+                  className="d-flex justify-content-center Card"
+                  style={well}
+                >
                   <p>
                     <strong>
                       {degrees
