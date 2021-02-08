@@ -1,11 +1,9 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
 require("react-bootstrap");
 
@@ -313,16 +311,15 @@ function App() {
     );
   };
 
-  //Cambiar temperatura a grados Farenheit
-  const handleChangeF = () => {
-    const degreeF = Math.floor(apiData.main.temp * 1.8 + 32);
-    setDegrees(false);
-  };
-
-  //Cambiar temperatura a grados Celsius
-  const handleChangeC = () => {
-    const degreeF = Math.floor(apiData.main.temp * 1.8 + 32);
-    setDegrees(true);
+  //Cambiar temperatura a grados Celsius / Farenheit
+  const handleChangeDegrees = () => {
+    if (degrees === true) {
+      const degreeF = Math.floor(apiData.main.temp * 1.8 + 32);
+      setDegrees(false);
+    } else {
+      const degreeF = Math.floor(apiData.main.temp * 1.8 + 32);
+      setDegrees(true);
+    }
   };
 
   //Mostrar los datos de la API Openweathermap en pantalla
@@ -415,16 +412,9 @@ function App() {
                       {degrees ? "℃" : "℉"}
                     </strong>
                   </p>
-                  <ButtonToolbar>
-                    <ButtonGroup>
-                      <Button className="btn-bg" onClick={handleChangeC}>
-                        &#8451;
-                      </Button>
-                      <Button className="btn-bg" onClick={handleChangeF}>
-                        &#8457;
-                      </Button>
-                    </ButtonGroup>
-                  </ButtonToolbar>
+                  <Button className="btn-bg" onClick={handleChangeDegrees}>
+                    &#8451; / &#8457;
+                  </Button>
                   <p>
                     <strong>
                       Feels like:{" "}
@@ -461,7 +451,7 @@ function App() {
 
   return (
     <Container
-      className="App App-header justify-content-center overlay"
+      className="App App-header justify-content-center gradient"
       fluid={true}
       style={{ display: "flex", justifyContent: "center" }}
     >
